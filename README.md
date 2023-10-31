@@ -1,2 +1,3 @@
 # Cattastic-Courage
-Cattastic Courage: A Pixel Adventure. Genre Platformer
+Cattastic Courage: A Pixel Adventure. 
+is a Platformer Game
