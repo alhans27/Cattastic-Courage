@@ -7,14 +7,18 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f; // Kecepatan gerak Pemain
     [SerializeField] private float jumpForce = 5f; // Kekuatan lompatan Pemain
+
+    [SerializeField] private LayerMask groundLayer;
     private Animator anim;
     private Rigidbody2D rb;
+    private CircleCollider2D coll;
     private SpriteRenderer sprite;
 
     // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
+        coll = GetComponent<CircleCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
     }
@@ -33,12 +37,10 @@ public class PlayerMovement : MonoBehaviour
         // transform.Translate(movement);
 
         // Jumping Player
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            // anim.SetBool("isJumping", true);
         }
-        JumpingAnimation();
     }
 
     private void WalkingAnimation(float direction)
@@ -60,21 +62,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void JumpingAnimation()
+    private bool isGrounded()
     {
-        if (rb.velocity.y != 0f)
-        {
-            anim.SetBool("isJumping", true);
-        }
-        else
-        {
-            anim.SetBool("isJumping", false);
-        }
+        // return Physics2D.OverlapCircle(groundCheck.position, -0.2f, groundLayer);
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
     }
-
-    // private bool isGrounded()
-    // {
-    //     // return Physics2D.OverlapCircle(groundCheck.position, -0.2f, groundLayer);
-    //     return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, groundLayer);
-    // }
 }
