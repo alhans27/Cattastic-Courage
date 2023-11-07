@@ -7,7 +7,8 @@ TagManager:
   - Enemy
   - Trap
   - Ground
-  - Item
+  - Fish Item
+  - Food Item
   layers:
   - Default
   - TransparentFX
