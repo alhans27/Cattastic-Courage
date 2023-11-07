@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -7,12 +8,26 @@ public class PlayerHealth : MonoBehaviour
     private float startHealth { get; set; }
     public float currentHealth { get; private set; }
 
+    [SerializeField] private Image totalhealthBar;
+    [SerializeField] private Image currenthealthBar;
+
     private Animator anim;
 
     private void Awake()
     {
         currentHealth = startHealth;
         anim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        totalhealthBar.fillAmount = currentHealth / startHealth;
+
+    }
+
+    private void Update()
+    {
+        currenthealthBar.fillAmount = currentHealth / startHealth;
     }
 
     public void GetDamage(float _damage)
