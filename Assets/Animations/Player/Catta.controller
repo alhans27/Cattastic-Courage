@@ -114,9 +114,6 @@ AnimatorStateMachine:
     m_State: {fileID: -2272636366132753796}
     m_Position: {x: 490, y: 180, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 4241431470165185529}
-    m_Position: {x: 320, y: 80, z: 0}
-  - serializedVersion: 1
     m_State: {fileID: 7379924254101367152}
     m_Position: {x: 30, y: 40, z: 0}
   - serializedVersion: 1
@@ -131,7 +128,7 @@ AnimatorStateMachine:
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: -210, y: 40, z: 0}
   m_EntryPosition: {x: -160, y: 190, z: 0}
-  m_ExitPosition: {x: 800, y: 120, z: 0}
+  m_ExitPosition: {x: 730, y: 190, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
   m_DefaultState: {fileID: 1750051013656149927}
 --- !u!1102 &-2272636366132753796
@@ -229,32 +226,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: cf5d41ea64bb88447b47a3018628d1ac, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &4241431470165185529
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Catta-anim-jump
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: a8a73026d78794240a3f7a83df219109, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
