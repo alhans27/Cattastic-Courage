@@ -8,6 +8,7 @@ public class EnemyStomp : MonoBehaviour
     {
         if (other.gameObject.tag == "Weak Point")
         {
+            GameManager.Instance.SetScore(20);
             other.transform.parent.gameObject.GetComponent<Animator>().SetTrigger("Dead");
         }
     }

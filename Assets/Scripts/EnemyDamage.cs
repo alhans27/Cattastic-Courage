@@ -38,6 +38,6 @@ public class EnemyDamage : MonoBehaviour
 
     void DestroyItsSelf()
     {
-        Destroy(this.gameObject);
+        this.gameObject.SetActive(false);
     }
 }
