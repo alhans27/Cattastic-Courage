@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void IncreaseScore()
+    private void Awake()
     {
-
+        Debug.Log($"Highscore : {highScore}");
     }
     public int GetScore()
     {
@@ -58,7 +58,9 @@ public class GameManager : MonoBehaviour
         score += value;
         if (score > highScore)
         {
-            Instance.SetHighScore(score);
+            GameManager.Instance.SetHighScore(score);
+            Debug.Log("Sukses Menambahkan Highscore");
+            Debug.Log($"Highscore : {highScore}");
         }
     }
     public int GetHighScore()

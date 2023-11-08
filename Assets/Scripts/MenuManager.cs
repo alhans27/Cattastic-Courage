@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class MenuManager : MonoBehaviour
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
     [SerializeField] private GameObject deadMenuPanel = null;
+    [SerializeField] private TextMeshProUGUI scoreText = null;
 
     public static MenuManager Instance
     {
@@ -30,6 +32,15 @@ public class MenuManager : MonoBehaviour
                 }
             }
             return instance;
+        }
+    }
+
+    private void Awake()
+    {
+        if (scoreText != null)
+        {
+            int score = GameManager.Instance.GetHighScore();
+            scoreText.text = $"Score : {score}";
         }
     }
 
@@ -54,8 +65,16 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        int index = SceneManager.GetActiveScene().buildIndex + 1;
+        int index = SceneManager.GetActiveScene().buildIndex + 2;
         SceneManager.LoadScene(index);
+    }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void LeaderboardMenu()
+    {
+        SceneManager.LoadScene(1);
     }
 
     public void RestartLevel()
