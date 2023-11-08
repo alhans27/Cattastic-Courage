@@ -9,7 +9,7 @@ public class MenuManager : MonoBehaviour
     private static MenuManager instance;
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
-    [SerializeField] private GameObject deadMenuPanel;
+    [SerializeField] private GameObject deadMenuPanel = null;
 
     public static MenuManager Instance
     {
@@ -43,16 +43,28 @@ public class MenuManager : MonoBehaviour
             playerMovement.enabled = true;
             playerMovement.respawn = true;
             playerHealth.currentHealth = GameManager.Instance.GetLastPH();
-            deadMenuPanel.SetActive(false);
+            if (deadMenuPanel != null)
+            {
+                deadMenuPanel.SetActive(false);
+            }
             Debug.Log(playerMovement.transform.position);
             Debug.Log(playerHealth.currentHealth);
         }
+    }
+
+    public void StartGame()
+    {
+        int index = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(index);
     }
 
     public void RestartLevel()
     {
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
-        deadMenuPanel.SetActive(false);
+        if (deadMenuPanel != null)
+        {
+            deadMenuPanel.SetActive(false);
+        }
     }
 }
