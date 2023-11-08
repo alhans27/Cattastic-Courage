@@ -11,6 +11,7 @@ TagManager:
   - Food Item
   - Weak Point
   - Gate Point
+  - Dead Zone
   layers:
   - Default
   - TransparentFX

@@ -40,12 +40,16 @@ public class PlayerHealth : MonoBehaviour
         }
         else
         {
-            // Dead
-            anim.SetTrigger("Dead");
-            GetComponent<Rigidbody2D>().velocity = new(0, 0);
-            GetComponent<PlayerMovement>().enabled = false;
-            deadMenuPanel.SetActive(true);
-
+            Dead();
         }
+    }
+
+    public void Dead()
+    {
+        // Dead
+        anim.SetTrigger("Dead");
+        GetComponent<Rigidbody2D>().velocity = new(0, 0);
+        GetComponent<PlayerMovement>().enabled = false;
+        deadMenuPanel.SetActive(true);
     }
 }
