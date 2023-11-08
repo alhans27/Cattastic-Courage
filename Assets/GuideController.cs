@@ -8,6 +8,9 @@ public class GuideController : MonoBehaviour
     [SerializeField] private GameObject popUpMessage;
     [SerializeField] private GameObject finishGate;
 
+    [SerializeField] private AudioSource opengateSound;
+    [SerializeField] private AudioSource popupMessageSound;
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -16,9 +19,11 @@ public class GuideController : MonoBehaviour
             {
                 ShowSuccessMessage();
                 finishGate.SetActive(true);
+                opengateSound.Play();
             }
             else
             {
+                popupMessageSound.Play();
                 ShowAlertMessage(fishItemMinimum);
             }
         }

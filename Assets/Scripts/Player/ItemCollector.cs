@@ -12,6 +12,7 @@ public class ItemCollector : MonoBehaviour
     [SerializeField] private Text fishItemText;
     [SerializeField] private Text foodItemText;
     [SerializeField] private Text scoreText;
+    [SerializeField] private AudioSource collectItemSound;
 
     private void Awake()
     {
@@ -32,6 +33,7 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.CompareTag("Fish Item"))
         {
             fishItem++;
+            collectItemSound.Play();
             Destroy(other.gameObject);
             GameManager.Instance.SetFishItem(fishItem);
             fishItemText.text = fishItem.ToString();
@@ -40,6 +42,7 @@ public class ItemCollector : MonoBehaviour
         if (other.gameObject.CompareTag("Food Item"))
         {
             foodItem++;
+            collectItemSound.Play();
             Destroy(other.gameObject);
             GameManager.Instance.SetFoodItem(fishItem);
             foodItemText.text = foodItem.ToString();

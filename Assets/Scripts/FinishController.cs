@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class FinishController : MonoBehaviour
 {
-    // [SerializeField] private AudioSource finishSoundEffect;
+    // [SerializeField] private AudioSource finishSound;
 
     private bool levelCompleted = false;
 
@@ -12,7 +12,7 @@ public class FinishController : MonoBehaviour
         if (other.gameObject.CompareTag("Player") && !levelCompleted)
         {
             levelCompleted = true;
-            // finishSoundEffect.Play();
+            // finishSound.Play();
             Invoke("NextLevel", 1.5f);
         }
     }
