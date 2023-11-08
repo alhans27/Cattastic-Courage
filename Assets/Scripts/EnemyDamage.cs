@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    [SerializeField] private float knockbackForce;
+    // [SerializeField] private float knockbackForce;
     [SerializeField] private float attackForce;
-
+    [SerializeField] private PlayerMovement playerMovement;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,15 +17,27 @@ public class EnemyDamage : MonoBehaviour
 
             if (playerHealth.currentHealth > 0)
             {
-                Vector2 knockbackDirection = (other.gameObject.transform.position - transform.position).normalized;
-
-                // Mendapatkan komponen Rigidbody2D pemain
-                Rigidbody2D playerRigidbody = other.GetComponent<Rigidbody2D>();
-
-                // Menerapkan kekuatan knockback dengan mengubah posisi pemain
-                playerRigidbody.position = knockbackDirection * knockbackForce;
+                playerMovement.KBCounter = playerMovement.KBTotalTime;
+                if (other.transform.position.x <= transform.position.x)
+                {
+                    playerMovement.isRightKB = true;
+                }
+                if (other.transform.position.x > transform.position.x)
+                {
+                    playerMovement.isRightKB = false;
+                }
+            }
+            else
+            {
+                playerMovement.KBCounter = 0;
             }
 
         }
+    }
+
+
+    void DestroyItsSelf()
+    {
+        Destroy(this.gameObject);
     }
 }

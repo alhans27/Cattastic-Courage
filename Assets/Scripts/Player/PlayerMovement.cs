@@ -8,6 +8,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f; // Kecepatan gerak Pemain
     [SerializeField] private float jumpForce = 5f; // Kekuatan lompatan Pemain
 
+    [field: SerializeField]
+    public float KBForce { get; private set; }
+
+    [field: SerializeField]
+    public float KBTotalTime { get; private set; }
+    public float KBCounter { private get; set; }
+    public bool isRightKB { private get; set; }
+
     [SerializeField] private LayerMask groundLayer;
     private Animator anim;
     private Rigidbody2D rb;
@@ -29,12 +37,24 @@ public class PlayerMovement : MonoBehaviour
         float dirX = Input.GetAxisRaw("Horizontal");
         WalkingAnimation(dirX);
 
-        // Walking Player
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
-        // Alternatif Walking Player
-        // Vector3 movement = new Vector3(dirX * moveSpeed * Time.deltaTime, 0f);
-        // transform.Translate(movement);
+        if (KBCounter <= 0)
+        {
+            // Walking Player
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+        }
+        else
+        {
+            // Knockback Player and Disable Walking Player
+            if (isRightKB == true)
+            {
+                rb.velocity = new(-KBForce, KBForce);
+            }
+            if (isRightKB == false)
+            {
+                rb.velocity = new(KBForce, KBForce);
+            }
+            KBCounter -= Time.deltaTime;
+        }
 
         // Jumping Player
         if (Input.GetButtonDown("Jump") && isGrounded())
@@ -46,6 +66,10 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("isJumping", false);
         }
+
+        // Alternatif Walking Player
+        // Vector3 movement = new Vector3(dirX * moveSpeed * Time.deltaTime, 0f);
+        // transform.Translate(movement);
     }
 
     private void WalkingAnimation(float direction)

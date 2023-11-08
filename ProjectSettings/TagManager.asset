@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Fish Item
   - Food Item
+  - Weak Point
   layers:
   - Default
   - TransparentFX

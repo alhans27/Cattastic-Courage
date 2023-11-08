@@ -4,8 +4,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [field: SerializeField]
-    private float startHealth { get; set; }
+    [SerializeField] private float startHealth;
     public float currentHealth { get; private set; }
 
     [SerializeField] private Image totalhealthBar;
@@ -33,7 +32,6 @@ public class PlayerHealth : MonoBehaviour
     public void GetDamage(float _damage)
     {
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startHealth);
-        Debug.Log(currentHealth);
         if (currentHealth > 0f)
         {
             // Hurt
@@ -43,6 +41,7 @@ public class PlayerHealth : MonoBehaviour
         {
             // Dead
             anim.SetTrigger("Dead");
+            GetComponent<Rigidbody2D>().velocity = new(0, 0);
             GetComponent<PlayerMovement>().enabled = false;
         }
     }
