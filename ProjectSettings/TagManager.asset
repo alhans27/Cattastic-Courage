@@ -10,6 +10,7 @@ TagManager:
   - Fish Item
   - Food Item
   - Weak Point
+  - Gate Point
   layers:
   - Default
   - TransparentFX
