@@ -7,11 +7,21 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
 
     private int score;
+    private float scorePerSecond;
     private int highScore;
     private int fishItem;
     private int foodItem;
     private int level;
+    private bool isCheckStatus = false;
+    private Vector2 lastCheckpoint;
 
+    // void FixedUpdate()
+    // {
+    //     // Count Time
+    //     // scorePerSecond += 1f * Time.fixedDeltaTime;
+    //     // score = (int)scorePerSecond;
+    //     // Debug.Log(scorePerSecond);
+    // }
     public static GameManager Instance
     {
         get
@@ -34,6 +44,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void IncreaseScore()
+    {
+
+    }
     public int GetScore()
     {
         return score;
@@ -76,6 +90,34 @@ public class GameManager : MonoBehaviour
         int point = 50;
         foodItem = value;
         GameManager.Instance.SetScore(point);
+    }
+
+    public void SetLevel(int index)
+    {
+        level = index;
+    }
+
+    public int GetLevel()
+    {
+        return level;
+    }
+    public void SetCheckpoint(Vector2 position)
+    {
+        lastCheckpoint = position;
+    }
+
+    public Vector2 GetCheckpoint()
+    {
+        return lastCheckpoint;
+    }
+    public void SetCPStatus(bool value)
+    {
+        isCheckStatus = value;
+    }
+
+    public bool GetCPStatus()
+    {
+        return isCheckStatus;
     }
 
 }

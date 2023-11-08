@@ -13,15 +13,14 @@ public class FinishController : MonoBehaviour
         {
             levelCompleted = true;
             // finishSoundEffect.Play();
-            Invoke("NextLevel", 3f);
+            Invoke("NextLevel", 1.5f);
         }
     }
 
     private void NextLevel()
     {
         int level = SceneManager.GetActiveScene().buildIndex + 1;
-        // GameManager.Instance.SetLevel(level);
+        GameManager.Instance.SetLevel(level);
         SceneManager.LoadScene(level);
-        // Debug.Log("Level yang tersimpan : " + GameManager.Instance.GetLevel());
     }
 }
