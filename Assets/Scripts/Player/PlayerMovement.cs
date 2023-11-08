@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isRightKB { private get; set; }
 
     [SerializeField] private LayerMask groundLayer;
+    public bool respawn = false;
     private Animator anim;
     private Rigidbody2D rb;
     private CircleCollider2D coll;
@@ -70,6 +71,13 @@ public class PlayerMovement : MonoBehaviour
         // Alternatif Walking Player
         // Vector3 movement = new Vector3(dirX * moveSpeed * Time.deltaTime, 0f);
         // transform.Translate(movement);
+
+        // Check if Respawn
+        if (respawn)
+        {
+            anim.SetTrigger("Idle");
+            respawn = false;
+        }
     }
 
     private void WalkingAnimation(float direction)

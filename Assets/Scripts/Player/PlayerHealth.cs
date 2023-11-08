@@ -5,10 +5,11 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float startHealth;
-    public float currentHealth { get; private set; }
+    public float currentHealth { get; set; }
 
     [SerializeField] private Image totalhealthBar;
     [SerializeField] private Image currenthealthBar;
+    [SerializeField] private GameObject deadMenuPanel;
 
     private Animator anim;
 
@@ -43,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
             anim.SetTrigger("Dead");
             GetComponent<Rigidbody2D>().velocity = new(0, 0);
             GetComponent<PlayerMovement>().enabled = false;
+            deadMenuPanel.SetActive(true);
+
         }
     }
 }

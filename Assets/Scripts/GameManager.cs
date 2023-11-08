@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private int fishItem;
     private int foodItem;
     private int level;
+    private float lastPlayerHealth;
     private bool isCheckStatus = false;
     private Vector2 lastCheckpoint;
 
@@ -118,6 +119,15 @@ public class GameManager : MonoBehaviour
     public bool GetCPStatus()
     {
         return isCheckStatus;
+    }
+
+    public void SetLastPH(float value)
+    {
+        lastPlayerHealth = value;
+    }
+    public float GetLastPH()
+    {
+        return lastPlayerHealth;
     }
 
 }
