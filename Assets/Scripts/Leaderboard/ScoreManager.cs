@@ -1,20 +1,27 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.Events;
 
 public class ScoreManager : MonoBehaviour
 {
-    // [SerializeField] private TextMeshProUGUI inputScore;
     private int inputScore;
-    [SerializeField] private TMP_InputField inputName;
+    private string inputName;
 
     public UnityEvent<string, int> submitScoreEvent;
 
     public void SubmitScore()
     {
-        inputScore = GameManager.Instance.GetHighScore();
-        Debug.Log($"Ini input Highscore yang di dapat: {inputScore}");
-        submitScoreEvent.Invoke(inputName.text, inputScore);
+        inputName = Storage.playerName;
+        if (inputName != null)
+        {
+            // inputScore = GameManager.Instance.GetHighScore();
+            inputScore = Storage.highScore;
+            Debug.Log($"Ini input Highscore yang di dapat: {inputScore}");
+            submitScoreEvent.Invoke(inputName, inputScore);
+        }
+        else
+        {
+            Debug.Log("Gagal Input Nama");
+        }
     }
 
 }

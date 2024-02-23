@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,7 +32,7 @@ public class ItemCollector : MonoBehaviour
         {
             fishItem++;
             collectItemSound.Play();
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             GameManager.Instance.SetFishItem(fishItem);
             fishItemText.text = fishItem.ToString();
         }
@@ -43,7 +41,7 @@ public class ItemCollector : MonoBehaviour
         {
             foodItem++;
             collectItemSound.Play();
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             GameManager.Instance.SetFoodItem(fishItem);
             foodItemText.text = foodItem.ToString();
         }

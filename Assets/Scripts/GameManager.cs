@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance;
+    public static GameManager instance;
 
     private int score;
-    private float scorePerSecond;
     private int highScore;
     private int fishItem;
     private int foodItem;
@@ -16,13 +13,6 @@ public class GameManager : MonoBehaviour
     private bool isCheckStatus = false;
     private Vector2 lastCheckpoint;
 
-    // void FixedUpdate()
-    // {
-    //     // Count Time
-    //     // scorePerSecond += 1f * Time.fixedDeltaTime;
-    //     // score = (int)scorePerSecond;
-    //     // Debug.Log(scorePerSecond);
-    // }
     public static GameManager Instance
     {
         get
@@ -45,10 +35,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        Debug.Log($"Highscore : {highScore}");
-    }
     public int GetScore()
     {
         return score;
@@ -58,10 +44,18 @@ public class GameManager : MonoBehaviour
         score += value;
         if (score > highScore)
         {
-            GameManager.Instance.SetHighScore(score);
-            Debug.Log("Sukses Menambahkan Highscore");
-            Debug.Log($"Highscore : {highScore}");
+            Instance.SetHighScore(score);
         }
+    }
+
+    public void ResetScore()
+    {
+        score = 0;
+    }
+
+    public void ResetHighScore()
+    {
+        highScore = 0;
     }
     public int GetHighScore()
     {
@@ -81,7 +75,7 @@ public class GameManager : MonoBehaviour
     {
         int point = 200;
         fishItem = value;
-        GameManager.Instance.SetScore(point);
+        Instance.SetScore(point);
     }
     public int GetFoodItem()
     {
@@ -92,7 +86,7 @@ public class GameManager : MonoBehaviour
     {
         int point = 50;
         foodItem = value;
-        GameManager.Instance.SetScore(point);
+        Instance.SetScore(point);
     }
 
     public void SetLevel(int index)

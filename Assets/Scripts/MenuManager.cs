@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,11 +5,17 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
 
-    private static MenuManager instance;
+    public static MenuManager instance;
     private PlayerMovement playerMovement;
     private PlayerHealth playerHealth;
-    [SerializeField] private GameObject deadMenuPanel = null;
-    [SerializeField] private TextMeshProUGUI scoreText = null;
+
+    [SerializeField] private GameObject deadMenuPanel;
+    [SerializeField] private TextMeshProUGUI playerNameText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+
+    [SerializeField] private TMP_InputField inputName;
+
+    private string playerName;
 
     public static MenuManager Instance
     {
@@ -39,9 +43,19 @@ public class MenuManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            int score = GameManager.Instance.GetHighScore();
+            int score = Storage.highScore;
             scoreText.text = $"Score : {score}";
         }
+
+        if (playerNameText != null)
+        {
+            playerNameText.text = $"Player Name : {Storage.playerName}";
+        }
+    }
+
+    void Update()
+    {
+        Debug.Log(Storage.highScore);
     }
 
     public void SecondChange()
@@ -65,8 +79,29 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        if (inputName != null)
+        {
+            if (inputName.text != "")
+            {
+                Storage.playerName = inputName.text;
+            }
+            else
+            {
+                Storage.playerName = "Default Player";
+            }
+        }
         int index = SceneManager.GetActiveScene().buildIndex + 2;
         SceneManager.LoadScene(index);
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Exit From Game");
+    }
+    public void ContinueGame()
+    {
+        Debug.Log("Continue the Game");
+        SceneManager.LoadScene(Storage.saveLevel);
     }
     public void MainMenu()
     {
@@ -79,6 +114,8 @@ public class MenuManager : MonoBehaviour
 
     public void RestartLevel()
     {
+        GameManager.Instance.ResetHighScore();
+        GameManager.Instance.ResetScore();
         int index = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
         if (deadMenuPanel != null)

@@ -19,6 +19,7 @@ public class FinishController : MonoBehaviour
 
     private void NextLevel()
     {
+        Storage.highScore = GameManager.Instance.GetHighScore();
         int level = SceneManager.GetActiveScene().buildIndex + 1;
         GameManager.Instance.SetLevel(level);
         SceneManager.LoadScene(level);

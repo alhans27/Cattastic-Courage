@@ -63,9 +63,14 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             anim.SetBool("isJumping", true);
         }
-        if (rb.velocity.y == 0f)
+
+        if (isGrounded())
         {
             anim.SetBool("isJumping", false);
+        }
+        else if (!isGrounded())
+        {
+            anim.SetBool("isJumping", true);
         }
 
         // Alternatif Walking Player
